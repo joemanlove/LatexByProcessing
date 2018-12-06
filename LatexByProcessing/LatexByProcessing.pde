@@ -1,14 +1,28 @@
 Table table;
 String [] topics= {};
-int [] daysInMonth = {31, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
-String [] months = {"December", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
-int month = 8;
-int date = 27;
+int [] daysInMonth = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+String [] months = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
+
+//Start Month is for example: 8 for august - 1
+int startMonth = 8 - 1;
+//start must be on a tuesday...
+int startDate = 27;
+int dayOfYear = 0;
+int date;
 int year = 2018;
 int endMonth = 12;
 int endDate = 11;
 
 void setup() {
+  //initialize dayOfYear
+  for (int i =0; i < startMonth; i++) {
+    dayOfYear += daysInMonth[i];
+  }
+  dayOfYear += startDate;
+
+  //month = getMonth(dayOfYear);
+  //dateT = dayOfYear;
+
   generateDates();
 }
 
@@ -28,13 +42,25 @@ void generateCode() {
 
 void generateDates() {
   //\bf{August} \hfill\bf{27}& \hfill\bf{29}&\hfill\bf{31} \\
-  
-  //while (month<endMonth || (month == endMonth && date< endDate)) {
-    println("\\bf{" + months[month] +"} \\hfill\\bf{" +date+"}");
-     
-    date = date + 2;
-  //}
-  //for (int i =0; i <12; i++) {
-  //  println(months[i] + " has " + daysInMonth[i] + " days.");
-  //}
+  println("\\bf{" + months[getMonth(dayOfYear)] +"} \\hfill\\bf{" +date(dayOfYear)+"} & \\bf{" + months[startMonth] + "} \\hfill\\bf{" + startDate + "} \\\\");
+}
+
+int getMonth(int day) {
+  int totalDaysSoFar =0;
+  for (int i =0; i < 12; i++) {
+    totalDaysSoFar += daysInMonth[i];
+    if (day < totalDaysSoFar) {
+      return i;
+    }
+  }
+  return -1;
+}
+
+int getDate(int day){
+  int totalDaysSoFar =0;
+  for (int i =0; i < getMonth(day); i++) {
+    totalDaysSoFar += daysInMonth[i];
+    return dayOfYear;
+  }
+  return -1;
 }

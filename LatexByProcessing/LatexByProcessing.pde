@@ -8,6 +8,7 @@ int startMonth = 8 - 1;
 //start must be on a tuesday...
 int startDate = 27;
 int dayOfYear = 0;
+int numWeeks =15;
 int date;
 int year = 2018;
 int endMonth = 12;
@@ -42,7 +43,9 @@ void generateCode() {
 
 void generateDates() {
   //\bf{August} \hfill\bf{27}& \hfill\bf{29}&\hfill\bf{31} \\
-  println("\\bf{" + months[getMonth(dayOfYear)] +"} \\hfill\\bf{" +getDate(dayOfYear)+"} & \\bf{" + months[getMonth(dayOfYear+2)] + "} \\hfill\\bf{" + getDate(dayOfYear+2) + "} \\\\");
+  for(int i=0; i<numWeeks;i++){
+  println("\\bf{" + months[getMonth(dayOfYear + 7*i)] +"} \\hfill\\bf{" +getDate(dayOfYear+ 7*i)+"} & \\bf{" + months[getMonth(dayOfYear+2+7*i)] + "} \\hfill\\bf{" + getDate(dayOfYear+2+7*i) + "} \\\\");
+  }
 }
 
 int getMonth(int day) {

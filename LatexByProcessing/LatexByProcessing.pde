@@ -43,8 +43,8 @@ void generateCode() {
 
 void generateDates() {
   //\bf{August} \hfill\bf{27}& \hfill\bf{29}&\hfill\bf{31} \\
-  for(int i=0; i<numWeeks;i++){
-  println("\\bf{" + months[getMonth(dayOfYear + 7*i)] +"} \\hfill\\bf{" +getDate(dayOfYear+ 7*i)+"} & \\bf{" + months[getMonth(dayOfYear+2+7*i)] + "} \\hfill\\bf{" + getDate(dayOfYear+2+7*i) + "} \\\\");
+  for (int i=0; i<numWeeks; i++) {
+    println("\\bf{" + months[getMonth(dayOfYear + 7*i)] +"} \\hfill\\bf{" +getDate(dayOfYear+ 7*i)+"} & \\bf{" + months[getMonth(dayOfYear+2+7*i)] + "} \\hfill\\bf{" + getDate(dayOfYear+2+7*i) + "} \\\\");
   }
 }
 
@@ -52,14 +52,14 @@ int getMonth(int day) {
   int totalDaysSoFar =0;
   for (int i =0; i < 12; i++) {
     totalDaysSoFar += daysInMonth[i];
-    if (day < totalDaysSoFar) {
+    if (day <= totalDaysSoFar) {
       return i;
     }
   }
   return -1;
 }
 
-int getDate(int day){
+int getDate(int day) {
   int totalDaysSoFar =0;
   for (int i =0; i < getMonth(day); i++) {
     totalDaysSoFar += daysInMonth[i];
